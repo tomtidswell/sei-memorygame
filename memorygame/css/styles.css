@@ -11,8 +11,10 @@ a{
   letter-spacing: 1px;
   font-size: 18px;
   text-transform: uppercase;
-  margin: 0 20px;
   border-bottom: 2px solid transparent;
+}
+nav a{
+  margin: 0 20px;
 }
 
 a:hover{
@@ -34,6 +36,15 @@ nav{
 main{
   width: 850px;
   margin: 35px auto;
+}
+section > *{
+  width: 850px;
+  margin: 10px auto;
+}
+
+section{
+  background-color: #00A6B3;
+  padding: 20px 0;
 }
 
 footer{
@@ -63,8 +74,8 @@ height: 0;
 font-size: 0;
 }
 .name{
-   color: #F15B31;
-   font-weight: 700;
+color: #F15B31;
+font-weight: 700;
 }
 
 h1 {
@@ -93,5 +104,39 @@ p {
 }
 
 img{
-  margin: 40px 8px 0 8px;
+  margin: 10px 8px 0 8px;
+}
+
+button{
+  border: 2px solid #00A6B3;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #0d2c40;
+  background-color: #F15B31;
+  margin-left: 100px;
+}
+
+#game-message{
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  color: #F15B31;
+  display: inline-block;
+  text-transform: uppercase;
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all, 0s;
+  opacity:0;
+  margin-bottom: 0;
+}
+
+#game-message.show{
+  border: 2px solid #00A6B3;
+  border-radius: 4px;
+  opacity:1;
+  transition: all, 1s;
 }
