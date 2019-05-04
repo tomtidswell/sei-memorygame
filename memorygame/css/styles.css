@@ -36,6 +36,7 @@ nav{
 main{
   max-width: 800px;
   margin: 35px auto;
+  padding: 20px;
 }
 section > *{
   max-width: 800px;
@@ -122,8 +123,8 @@ button{
 
 #game-board{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  grid-gap: 3em;
+  grid-template-columns: repeat(3, minmax(175px, 1fr));
+  grid-gap: 1em;
 }
 
 #game-message{
@@ -147,4 +148,13 @@ button{
 #game-message.show{
   transition: all, 1s;
   bottom:50px;
+}
+
+@media screen and (max-width: 600px) {
+  #game-board{
+    grid-template-columns: repeat(2, minmax(125px, 1fr));
+  }
+  img{
+    height:150px;
+  }
 }
