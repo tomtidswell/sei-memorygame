@@ -34,17 +34,17 @@ nav{
 }
 
 main{
-  max-width: 850px;
+  max-width: 800px;
   margin: 35px auto;
 }
 section > *{
-  max-width: 850px;
+  max-width: 800px;
   margin: 10px auto;
 }
 
 section{
   background-color: #00A6B3;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 footer{
@@ -115,46 +115,36 @@ button{
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   font-weight: 400;
-  color: #0d2c40;
+  color: white;
   background-color: #F15B31;
-  margin-left: 100px;
-}
-
-#game-container{
-  position: relative;
-  margin: 0;
+  margin: 0 40px;
 }
 
 #game-board{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  grid-gap: 0.5em;
+  grid-gap: 3em;
 }
 
 #game-message{
+  position: fixed;
+  margin:0 auto;
+  left:0;
+  right:0;
+  width:250px;
+  transition: all, 1s;
+  bottom:-100px;
+  background-color: rgb(200,121,178);
+  padding:10px;
+  border: 5px solid white;
+  border-radius: 10px;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
-  background-color: white;
-  color: #F15B31;
-  display: block;
+  color: white;
   text-transform: uppercase;
-  border: 2px solid white;
-  border-radius: 4px;
-  padding: 4px 0;
-  transition: all, 0s;
-  opacity:0;
-  position:  absolute;
-  margin: 0 auto;
-  left:0;
-  top:30px;
-  width: 100%;
-  z-index: -1;
 }
 
 #game-message.show{
-  border: 2px solid #00A6B3;
-  border-radius: 4px;
-  opacity:1;
   transition: all, 1s;
-  z-index: 1;
+  bottom:50px;
 }

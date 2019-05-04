@@ -23,16 +23,30 @@ var cards = [
     rank:"King",
     suit:"Diamonds",
     cardImage:"img/king-of-diamonds.png"
+  },
+  {
+    id: 4,
+    rank:"Ace",
+    suit:"Hearts",
+    cardImage:"img/ace-of-hearts.png"
+  },
+  {
+    id: 5,
+    rank:"Ace",
+    suit:"Diamonds",
+    cardImage:"img/ace-of-diamonds.png"
   }
 ];
 
 var cardsInPlay = [];
+var cardsMatched = [];
 var randomisedCards = [];
 var gameBoard = document.getElementById('game-board');
 var gameMessage = document.getElementById('game-message');
 var gameScore = document.getElementById('game-score');
-var gamesPlayed = 0;
-var gamesWon = 0;
+var gameBestScore = document.getElementById('game-best-score');
+var totalFlips = 0;
+var bestScore = 100;
 
 document.getElementById('reset-button').addEventListener("click",resetBoard);
 
@@ -67,7 +81,10 @@ function resetBoard(){
   gameBoard.innerHTML = "";
   gameMessage.innerHTML = "&nbsp;";
   cardsInPlay = [];
+  cardsMatched = [];
   randomisedCards = [];
+  totalFlips = 0;
+  gameScore.textContent = totalFlips;
   gameMessage.classList.remove("show");
   createBoard();
 }
@@ -75,16 +92,35 @@ function resetBoard(){
 function checkForMatch(){
   if (cardsInPlay.length === 2) {
     if (cardsInPlay[0].rank===cardsInPlay[1].rank) {
-      gameMessage.textContent = "Its a match!!! Well done.";
-      gameMessage.classList.toggle("show");
-      gamesWon++;
+      updateText("Its a match!!! Well done. Keep going!");
+      //move the items from the inPlay array to the matched array
+      cardsInPlay.forEach( function(arrayItem) {
+        cardsMatched.push(arrayItem)
+      });
+      cardsInPlay = [];
     } else {
-      gameMessage.textContent = "Better luck next time :(";
-      gameMessage.classList.toggle("show");
+      updateText("Not a match :( Keep going!");
+      setTimeout(function(){ flipAllBack(); }, 1500);
     }
-    gamesPlayed++;
-    gameScore.textContent = gamesWon+"/"+gamesPlayed
+    totalFlips++;
+    gameScore.textContent = totalFlips;
   }
+  //winning flip
+  if (cardsMatched.length === cards.length) {
+    if (totalFlips < bestScore) {
+      updateText("Youve done it, and got a new high score! High Five!");
+      bestScore = totalFlips;
+      gameBestScore.textContent = bestScore;
+    }else{
+      updateText("Youve done it! Try again to beat that great score");
+    }
+  }
+}
+
+function updateText(newText){
+  gameMessage.innerHTML = newText;
+  gameMessage.classList.add("show");
+  setTimeout(function(){ gameMessage.classList.remove("show"); }, 1000);
 }
 
 function flipCard(){
@@ -98,9 +134,25 @@ function flipCard(){
   checkForMatch();
 }
 
+function flipAllBack(){
+  cardsInPlay.forEach( function(arrayItem) {
+    var cardToFlip = document.querySelector('[data-id="'+arrayItem.id+'"]')
+    cardToFlip.setAttribute('src', "img/back.png");
+  });
+  cardsInPlay = [];
+}
+
 function verifyFlip(flippedCard){
   //check that there arent already two flipped cards
   var allowFlip = cardsInPlay.length >= 2 ? false : true;
+  if(!allowFlip){return false;}
+
+  //check that that card isnt already matched
+  cardsMatched.forEach( function(arrayItem) {
+    if(arrayItem.id===flippedCard.id){
+      allowFlip = false;
+    }
+  });
   if(!allowFlip){return false;}
 
   //check that that card isnt already flipped
@@ -113,16 +165,4 @@ function verifyFlip(flippedCard){
   else {return true;}
 }
 
-
-
 createBoard();
-/*
-
-
-var cardOne = cards[0];
-var cardTwo = cards[2];
-
-
-cardsInPlay.push(cardTwo);
-
-*/
