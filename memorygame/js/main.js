@@ -120,7 +120,7 @@ function checkForMatch(){
 function updateText(newText){
   gameMessage.innerHTML = newText;
   gameMessage.classList.add("show");
-  setTimeout(function(){ gameMessage.classList.remove("show"); }, 1000);
+  setTimeout(function(){ gameMessage.classList.remove("show"); }, 2000);
 }
 
 function flipCard(){
@@ -130,14 +130,17 @@ function flipCard(){
     return false;
   }
   cardsInPlay.push(cards[cardId]);
-  this.setAttribute('src', cards[cardId].cardImage);
+  var cardToFlip = this;
+  setTimeout(function(){ cardToFlip.setAttribute('src', cards[cardId].cardImage); }, 300);
+  this.classList.add("flip");
   checkForMatch();
 }
 
 function flipAllBack(){
   cardsInPlay.forEach( function(arrayItem) {
     var cardToFlip = document.querySelector('[data-id="'+arrayItem.id+'"]')
-    cardToFlip.setAttribute('src', "img/back.png");
+    setTimeout(function(){ cardToFlip.setAttribute('src', "img/back.png"); }, 300);
+    cardToFlip.classList.remove("flip");
   });
   cardsInPlay = [];
 }

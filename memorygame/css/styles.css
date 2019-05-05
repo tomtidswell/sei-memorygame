@@ -118,13 +118,28 @@ button{
   font-weight: 400;
   color: white;
   background-color: #F15B31;
-  margin: 0 40px;
+  margin: 10px;
+}
+
+.score-table{
+  display: inline-block;
+  border: 2px solid #00A6B3;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #00A6B3;
+  background-color: white;
+  margin: 10px;
 }
 
 #game-board{
   display: grid;
   grid-template-columns: repeat(3, minmax(175px, 1fr));
   grid-gap: 1em;
+  margin-top: 20px;
 }
 
 #game-message{
@@ -134,7 +149,7 @@ button{
   right:0;
   width:250px;
   transition: all, 1s;
-  bottom:-100px;
+  bottom:-150px;
   background-color: rgb(200,121,178);
   padding:10px;
   border: 5px solid white;
@@ -150,11 +165,21 @@ button{
   bottom:50px;
 }
 
+#game-board img{
+  transition: all, 1s;
+  transform: rotateY(180deg);
+}
+
+#game-board img.flip{
+  transition: all, 1s;
+  transform: rotateY(0deg);
+}
+
 @media screen and (max-width: 600px) {
   #game-board{
-    grid-template-columns: repeat(2, minmax(125px, 1fr));
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
   }
   img{
-    height:150px;
+    height:160px;
   }
 }
