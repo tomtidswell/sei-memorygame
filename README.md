@@ -2,7 +2,7 @@
 
 A simple card flipping memory game. 
 
-I built this as one of my first ever projects in JavaScript.
+I built this as one of my first ever projects in JavaScript, over a weekend.
 
 It was originally built from a guide, but I greatly enhanced the functionality. See key enhanced functionality.
 
